@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="Docutils 0.12: http://docutils.sourceforge.net/" />
+<title>Solution</title>
+<link rel="stylesheet" href="http://fellowship.hackbrightacademy.com/tools/homework.css" type="text/css" />
+</head>
+<body>
+<div class="document" id="solution">
+<h1 class="title">Solution</h1>
+
+<p>Split a file into three scripts, set up a virtualenv and get some practice with
+implementing classes</p>
+<div class="section" id="code">
+<h1>Code</h1>
+<pre class="literal-block">
+from random import choice
+from customer_info import organize_customer_data
+
+
+def pick_winner(customers):
+        &quot;&quot;&quot;Choose a random winner from list of customers and print contact info.&quot;&quot;&quot;
+
+        chosen_customer = choice(customers)
+
+        print &quot;Contact {name} at {email} to notify them they've won&quot;.format(
+                name=chosen_customer.name,
+                email=chosen_customer.email
+                )
+
+
+customers = organize_customer_data(&quot;customers.txt&quot;)
+
+pick_winner(customers)
+
+
+</pre>
+</div>
+<div class="section" id="steps-to-have-completed">
+<h1>Steps to have completed</h1>
+<ul>
+<li><p class="first">Set up a virtualenv</p>
+</li>
+<li><p class="first">Activate virtualenv</p>
+</li>
+<li><p class="first">pip install bpython</p>
+</li>
+<li><p class="first">pip freeze to requirements.txt</p>
+</li>
+<li><p class="first">add env/ to .gitignore</p>
+</li>
+<li><p class="first">split melon-customers.py into three files:</p>
+<blockquote>
+<ul class="simple">
+<li><strong>customer.py</strong> - set up customer class</li>
+<li><strong>customer_info.py</strong> - process customer data</li>
+<li><strong>melon_raffle.py</strong> - randomly pick customer and print customer info</li>
+</ul>
+</blockquote>
+</li>
+<li><p class="first">fix random import error</p>
+</li>
+<li><p class="first">fix self error on Class attributes</p>
+</li>
+</ul>
+</div>
+</div>
+</body>
+</html>

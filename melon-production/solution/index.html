@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="Docutils 0.12: http://docutils.sourceforge.net/" />
+<title>Solution</title>
+<link rel="stylesheet" href="http://fellowship.hackbrightacademy.com/tools/homework.css" type="text/css" />
+</head>
+<body>
+<div class="document" id="solution">
+<h1 class="title">Solution</h1>
+
+<p>You need to create a <cite>Squash</cite> class the inherits from <cite>Melon</cite> -- so that it can
+do everything a melon can do:</p>
+<pre class="literal-block">
+class Squash(Melon):
+    &quot;&quot;&quot;Winter squash.&quot;&quot;&quot;
+</pre>
+<p>However, since we want to make sure that squash get painted green, we should
+override the <tt class="docutils literal">prep()</tt> method to include use of a painting robot:</p>
+<pre class="literal-block">
+class Squash(Melon):
+    &quot;&quot;&quot;Winter squash.&quot;&quot;&quot;
+
+    def prep(self):
+        &quot;&quot;&quot;Prepare the squash.&quot;&quot;&quot;
+
+        robots.cleanerbot.clean(self)
+        robots.stickerbot.apply_logo(self)
+        robots.painterbot.paint(self)
+</pre>
+<p>An alternative way to solve the <tt class="docutils literal">prep()</tt> function would be to use the <cite>super()</cite>
+method, which can invoke methods on a parent class. This could look like:</p>
+<pre class="literal-block">
+class Squash(Melon):
+    &quot;&quot;&quot;Winter squash.&quot;&quot;&quot;
+
+    def prep(self):
+        &quot;&quot;&quot;Prepare the squash.&quot;&quot;&quot;
+
+        super(Squash, self).prep()
+        robots.painterbot.paint(self)
+</pre>
+<p>This means, literally, &quot;do everything in <tt class="docutils literal">prep()</tt> that would be done for my parent
+class, but then also have a <cite>painterbot</cite> paint it.&quot;</p>
+<div class="section" id="complete-code">
+<h1>Complete Code</h1>
+<pre class="literal-block">
+&quot;&quot;&quot;Shipping procedures for Ubermelon.&quot;&quot;&quot;
+
+import robots
+import sys
+
+MELON_LIMIT = 200
+
+
+class Melon(object):
+    &quot;&quot;&quot;Melon.&quot;&quot;&quot;
+
+    def __init__(self, melon_type):
+        &quot;&quot;&quot;Initialize melon.
+
+        melon_type: type of melon being built.
+        &quot;&quot;&quot;
+
+        self.melon_type = melon_type
+        self.weight = 0.0
+        self.color = None
+        self.stickers = []
+
+    def prep(self):
+        &quot;&quot;&quot;Prepare the melon.&quot;&quot;&quot;
+
+        robots.cleanerbot.clean(self)
+        robots.stickerbot.apply_logo(self)
+    
+    def __str__(self):
+        &quot;&quot;&quot;Print out information about melon.&quot;&quot;&quot;
+
+        if self.weight &lt;= 0:
+            return self.melon_type
+        else:
+            return &quot;{} {:.2f} lbs {}&quot;.format(self.color,
+                                        self.weight,
+                                        self.melon_type)
+
+
+class Squash(Melon):
+    &quot;&quot;&quot;Winter squash.&quot;&quot;&quot;
+
+    def prep(self):
+        &quot;&quot;&quot;Prepare the squash.&quot;&quot;&quot;
+
+        robots.cleanerbot.clean(self)
+        robots.stickerbot.apply_logo(self)
+        robots.painterbot.paint(self)
+
+
+def show_help():
+
+    print &quot;&quot;&quot;
+shipping_procedure.py
+  Master Control Program for Automated Melon Order Fullfillment
+
+This program processes order from an order log file and controls the
+robots used to fulfill the orders.
+
+Usage:
+
+    python shipping_procedure.py [logfile]
+
+Where:
+
+    [logfile]
+        The name of the log file you would like to process.
+        Hint: There are two files included in this project folder.
+&quot;&quot;&quot;
+
+
+def main():
+    &quot;&quot;&quot;Assesses and packs order objects.
+
+    Distinguishes between melons/squashes.&quot;&quot;&quot;
+
+    # Check to make sure we've been passed an argument on the 
+    # command line.  If not, display instructions.
+
+    if len(sys.argv) &lt; 2:
+        show_help()
+        sys.exit()
+
+    # Get the name of the log file to open from the command line
+    logfilename = sys.argv[1]
+
+    # Open the log file
+    f = open(logfilename)
+
+    # Read each line from the log file and process it
+
+    for line in f:
+
+        # Each line should be in the format:
+        # &lt;melon name&gt;: &lt;quantity&gt;
+        melon_type, quantity = line.rstrip().split(':')
+        quantity = int(quantity)
+        
+        print &quot;\n-----&quot;
+        print &quot;Fullfilling order of {} {}&quot;.format(quantity, melon_type)
+        print &quot;-----\n&quot;
+
+        count = 0
+        melons = []
+
+        # Pick melons until we reach the requested quantity
+
+        while len(melons) &lt; quantity:
+
+            # Make sure we haven't reached our limit for the total
+            # number of melons we're allowed to pick
+
+            if count &gt; MELON_LIMIT:
+                print &quot;\n------------------------------&quot;
+                print &quot;ALL MELONS HAVE BEEN PICKED&quot;
+                print &quot;ORDERS FAILED TO BE FULFILLED!&quot;
+                print &quot;------------------------------\n&quot;
+                sys.exit()
+            
+            # Have the robot pick a 'melon' -- check to
+            # see if it is a Winter Squash or not. 
+
+            if melon_type != &quot;Winter Squash&quot;:
+                m = Melon(melon_type)
+
+            else:
+                m = Squash(melon_type)
+
+            robots.pickerbot.pick(m)
+            count += 1
+
+            # Prepare the melon
+            m.prep()
+            
+            # Evaluate the melon
+
+            presentable = robots.inspectorbot.evaluate(m)
+
+            if presentable:
+                melons.append(m)
+
+            else:
+                robots.trashbot.trash(m)
+                continue
+
+        print &quot;------&quot;
+        print &quot;Robots Picked {:,} {} for order of {}&quot;.format(count, melon_type, quantity)
+
+        # Pack the melons for shipping
+        boxes = robots.packerbot.pack(melons)
+
+        # Ship the boxes
+        robots.shipperbot.ship(boxes)
+
+        print &quot;------\n&quot;
+
+
+main()
+
+</pre>
+</div>
+<div class="section" id="notes">
+<h1>Notes</h1>
+<ul class="simple">
+<li>It is so, so very important that you don't get bogged down in the black box
+of what is happening in these files.</li>
+<li>Did I say it's important? It's really important.</li>
+<li>It's just going to be exceedingly frustrating if you do.</li>
+</ul>
+</div>
+</div>
+</body>
+</html>

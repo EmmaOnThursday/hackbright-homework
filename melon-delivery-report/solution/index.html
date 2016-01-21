@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="Docutils 0.12: http://docutils.sourceforge.net/" />
+<title>Solution</title>
+<link rel="stylesheet" href="http://fellowship.hackbrightacademy.com/tools/homework.css" type="text/css" />
+</head>
+<body>
+<div class="document" id="solution">
+<h1 class="title">Solution</h1>
+
+<p>We can make a function that each of the days can re-use.</p>
+<p>We'll pass the function the day number and the filename to use
+for that day, and it will produce a report for that day.</p>
+<div class="section" id="code">
+<h1>Code</h1>
+<pre class="literal-block">
+def melon_count(day_number, path):
+    &quot;&quot;&quot;Given day number &amp; path to the deliveries, produce report.
+
+    Opens the deliveries file at [path], processes each line,
+    and generates report in all uppercase.
+    &quot;&quot;&quot;
+
+    print &quot;Day&quot;, day_number
+    delivery_log = open(path)
+
+    for line in delivery_log:
+        line = line.rstrip()
+        words = line.split('|')
+
+        melon = words[0]
+        count = words[1]
+        amount = words[2]
+
+        # or you could do this with &quot;list unpacking&quot;:
+        #
+        # melon, count, amount = words
+        
+        print &quot;Delivered {} {}s for total of ${}&quot;.format(
+            count, melon, amount)
+
+    delivery_log.close()
+
+
+melon_count(1, &quot;um-deliveries-20140519.txt&quot;)
+melon_count(2, &quot;um-deliveries-20140520.txt&quot;)
+melon_count(3, &quot;um-deliveries-20140521.txt&quot;)
+
+</pre>
+</div>
+<div class="section" id="notes">
+<h1>Notes</h1>
+<p>We're using a &quot;docstring&quot;--that long string right after the
+function declaration. That is there to explain what the function
+does. It's a bit like a comment, but its job is to explain the
+<em>purpose</em> of the function, not to describe how it works.</p>
+<p>Also, we could handle pulling of the fields out in either of two
+ways:</p>
+<pre class="literal-block">
+# By explicit indexing
+melon = words[0]
+count = words[1]
+amount = words[2]
+
+# By &quot;list unpacking&quot;
+melon, count, amount = words
+</pre>
+<p>When the number of items in a list matches the number of variables
+you'd like to extract, the second method is often shorter, prettier,
+and easy to use.</p>
+</div>
+</div>
+</body>
+</html>
