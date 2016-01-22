@@ -1,0 +1,66 @@
+h5 {
+    text-align: center;
+    color:#4d4d4d;
+}
+
+.rating-text {
+    text-align: center;
+    color:#4d4d4d;
+    vertical-align: center;
+}
+
+p {
+    font-size: 16px;
+    text-align: justify;
+    text-justify: auto;
+}
+
+.navbar-brand img{
+    display:inline;
+    max-height: 125%;
+    padding-bottom: 2px;
+}
+
+div>img {
+    margin: 10px;
+}
+
+.glyphicon {
+    font-size: 24px;
+}
+
+section {
+    margin-top: 50px;
+}
+
+#login {
+    margin: 20px;
+}
+
+.img-container{
+    text-align: center;
+}
+
+.rating {
+  unicode-bidi: bidi-override;
+  direction: rtl;
+  font-size: 16px;
+}
+
+.rating > span {
+  display: inline-block;
+  position: relative;
+  width: 1.1em;
+}
+
+.rating > span:hover:before,
+.rating > span:hover ~ span:before {
+   content: "\2605";
+   position: absolute;
+   font-size: 16px;
+}
+
+.btn-primary {
+    width:80px;
+}
+

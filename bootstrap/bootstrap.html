@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet">
+    <link href="css-bootstrap.css" rel="stylesheet" type="text/css">
+    <title>Bootstrap Exercise</title>
+
+
+
+</head>
+
+<body>
+
+	<!-- Static navbar -->
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <!-- Brand and toggle 
+    get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+	    <div class="navbar-header">
+	      <a class="navbar-brand" href="#">
+	        <img class="img-responsive" alt="ubermelon-logo" src="um-logo.png">
+	      </a>
+	    </div>
+      <a class="navbar-brand" href="#">Ubermelon</a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li><a href="#">About</a></li>
+       </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="#" data-toggle="modal" data-target="#myModal">Login</a></li>
+        <li><a href="#">Profile</a></li>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>    
+
+	<!-- End of navbar -->
+
+
+	<!-- Here's The Modal Window for your login. -->
+
+	<div class="modal fade bs-example-modal-sm" id="myModal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+	  <div class="modal-dialog modal-sm">
+		    <div class="modal-content">
+		      <form id="login">
+				  <div class="form-group">
+				    <label class="sr-only" for="exampleInputEmail3">Email address</label>
+				    <input type="email" class="form-control" id="email" placeholder="Email">
+				  </div>
+				  <div class="form-group">
+				    <label class="sr-only" for="exampleInputPassword3">Password</label>
+				    <input type="password" class="form-control" id="password" placeholder="Password">
+				  </div>
+				  <button type="submit" class="btn btn-default">Log in</button>
+				</form>
+		    </div>
+	  	</div>
+	</div>
+
+	<!-- Body of Page -->
+
+	<!-- It's container-fluid so it spans the whole page. -->
+	<div class="container-fluid">
+
+	<!-- Row for center text -->
+	<div class='row'>
+		<div class="col-xs-12 col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2">
+			<h5>It was the best of times,
+				it was the worst of times,
+				it was the age of wisdom,
+				it was the age of foolishness,
+				it was the epoch of belief,
+				it was the epoch of incredulity,
+				it was the season of Light,
+				it was the season of Darkness,
+				it was the spring of hope,
+				it was the winter of despair,
+				we had everything before us,
+				we had nothing before us,
+				we were all going direct to Heaven,
+				we were all going direct the other way--
+				in short, the period was so far like the present period, that some of
+				its noisiest authorities insisted on its being received, for good or for
+				evil, in the superlative degree of comparison only.</h5> 
+		<br>
+		<br>
+
+		</div> <!-- Column -->   
+	</div>  <!-- Row -->   
+	<!-- End of centered main text. -->
+
+	<!-- Row for items to rate. -->			
+	<div class="row"> 
+		<div class="img-container col-xs-12 col-md-3">
+			<img class="img-responsive" src="melon-cat.jpg">
+			<div class="rating">
+			<span>&#9734</span><span>&#9734</span><span>&#9734</span><span>&#9734</span><span>&#9734</span>
+			</div>		</div>
+		<div class="rating-text col-xs-12 col-md-3">
+			<br>
+			<p> There were a king with a large jaw and a queen with a plain face, on the throne of England; there were a king with a large jaw and a queen with a fair face, on the throne of France.
+			</p>
+			<button type="button" class="btn btn-primary">Submit</button>
+		</div>
+		<div class="img-container col-xs-12 col-md-3">
+			<img class="img-responsive" src="melon-cat.jpg">
+			<div class="rating">
+			<span>&#9734</span><span>&#9734</span><span>&#9734</span><span>&#9734</span><span>&#9734</span>
+			</div>
+		</div>
+		<div class="rating-text col-xs-12 col-md-3 col-lg-3">
+			<br>
+			<p> It was the year of Our Lord 1775. Spiritual revelations were conceded to England at that favoured period, as at this. Mrs. Southcott had recently attained her five-and-twentieth blessed birthday...
+			</p>
+			<button type="button" class="btn btn-primary">Submit</button>
+		</div>
+
+	</div> 
+
+
+	<!-- End of rated items row -->
+
+				
+    </div>
+
+
+<!-- You need this in order to use JS-based components.
+Leave this at the bottom and code above it. -->
+
+<script src="http://code.jquery.com/jquery.js"></script>
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+
+</body>
+
+</html>
