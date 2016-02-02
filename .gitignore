@@ -1,3 +1,5 @@
 env/
 secret*
 *secret
+.DS_Store
+*.pyc
